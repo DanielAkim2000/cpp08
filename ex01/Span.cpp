@@ -1,15 +1,15 @@
 #include "Span.hpp"
 
-Span::Span() : _max(0), _data()
+Span::Span() : _max(0), _data(), _size(0)
 {
 }
 
-Span::Span(unsigned int N) : _max(N), _data()
+Span::Span(unsigned int N) : _max(N), _data(), _size(0)
 {
 	_data.reserve(N);
 }
 
-Span::Span(const Span &other) : _max(other._max), _data(other._data) {}
+Span::Span(const Span &other) : _max(other._max), _data(other._data), _size(other._size) {}
 
 Span &Span::operator=(const Span &other)
 {
@@ -17,6 +17,7 @@ Span &Span::operator=(const Span &other)
 	{
 		_max = other._max;
 		_data = other._data;
+		_size = other._size;
 	}
 	return (*this);
 }
@@ -32,6 +33,7 @@ void Span::addNumber(int n)
 		throw std::runtime_error("Full");
 	}
 	_data.push_back(n);
+	_size++;
 }
 
 int Span::shortestSpan() const

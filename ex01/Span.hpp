@@ -13,6 +13,7 @@ class Span
 private:
 	unsigned int _max;
 	std::vector<int> _data;
+	unsigned int _size;
 
 public:
 	Span();
@@ -24,6 +25,19 @@ public:
 	void addNumber(int n);
 	int shortestSpan() const;
 	int longestSpan() const;
+
+	template <typename Iterator>
+	void addRange(Iterator begin, Iterator end)
+	{
+		typename std::iterator_traits<Iterator>::difference_type count = std::distance(begin, end);
+		if (count < 0 || _size + static_cast<unsigned int>(count) > _max)
+			throw std::runtime_error("Error lors de l execution max size atteint");
+		while (begin != end)
+		{
+			addNumber(*begin);
+			begin++;
+		}
+	}
 };
 
 #endif
