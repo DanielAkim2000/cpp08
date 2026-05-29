@@ -32,11 +32,7 @@ public:
 		typename std::iterator_traits<Iterator>::difference_type count = std::distance(begin, end);
 		if (count < 0 || _size + static_cast<unsigned int>(count) > _max)
 			throw std::runtime_error("Error lors de l execution max size atteint");
-		while (begin != end)
-		{
-			addNumber(*begin);
-			begin++;
-		}
+		_data.insert(_data.end(), begin, end);
 	}
 };
 
