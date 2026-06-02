@@ -33,6 +33,7 @@ public:
 		if (count < 0 || _size + static_cast<unsigned int>(count) > _max)
 			throw std::runtime_error("Error lors de l execution max size atteint");
 		_data.insert(_data.end(), begin, end);
+		_size = static_cast<unsigned int>(_data.size());
 	}
 };
 
